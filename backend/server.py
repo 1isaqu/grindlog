@@ -33,7 +33,7 @@ class Exercise(BaseModel):
     created_at: Optional[str] = None
 
 class WorkoutSet(BaseModel):
-    reps: int
+    reps: float  # Changed to float to allow partial reps if needed, or just safety
     weight: float
 
 class WorkoutLog(BaseModel):
