@@ -27,7 +27,7 @@ api_router = APIRouter(prefix="/api")
 # --- Models ---
 
 class Exercise(BaseModel):
-    id: str
+    id: Union[str, int]
     name: str
     muscle: Optional[str] = None
     created_at: Optional[str] = None
