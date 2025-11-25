@@ -1,51 +1,75 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import React from 'react';
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { Toaster } from "@/components/ui/sonner";
+import LogWorkout from "./pages/LogWorkout";
+import Exercises from "./pages/Exercises";
+import History from "./pages/History";
+import Settings from "./pages/Settings";
+import { Dumbbell, History as HistoryIcon, Settings as SettingsIcon, PlusCircle } from "lucide-react";
 
 function App() {
   return (
-    <div className="App">
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-black">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
+        <div className="min-h-screen">
+          <Routes>
+            <Route path="/" element={<LogWorkout />} />
+            <Route path="/exercises" element={<Exercises />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </div>
+
+        {/* Bottom Navigation */}
+        <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-border h-16 z-50 pb-safe">
+          <div className="flex justify-around items-center h-full max-w-md mx-auto">
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => 
+                `flex flex-col items-center justify-center w-full h-full space-y-1 ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`
+              }
+              data-testid="nav-log"
+            >
+              <PlusCircle className="h-6 w-6" />
+              <span className="text-[10px] font-medium">Log</span>
+            </NavLink>
+            
+            <NavLink 
+              to="/history" 
+              className={({ isActive }) => 
+                `flex flex-col items-center justify-center w-full h-full space-y-1 ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`
+              }
+              data-testid="nav-history"
+            >
+              <HistoryIcon className="h-6 w-6" />
+              <span className="text-[10px] font-medium">History</span>
+            </NavLink>
+            
+            <NavLink 
+              to="/exercises" 
+              className={({ isActive }) => 
+                `flex flex-col items-center justify-center w-full h-full space-y-1 ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`
+              }
+              data-testid="nav-exercises"
+            >
+              <Dumbbell className="h-6 w-6" />
+              <span className="text-[10px] font-medium">Exercises</span>
+            </NavLink>
+            
+            <NavLink 
+              to="/settings" 
+              className={({ isActive }) => 
+                `flex flex-col items-center justify-center w-full h-full space-y-1 ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`
+              }
+              data-testid="nav-settings"
+            >
+              <SettingsIcon className="h-6 w-6" />
+              <span className="text-[10px] font-medium">Settings</span>
+            </NavLink>
+          </div>
+        </nav>
+        
+        <Toaster position="top-center" theme="dark" />
       </BrowserRouter>
     </div>
   );
