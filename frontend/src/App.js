@@ -21,7 +21,7 @@ function App() {
         </div>
 
         {/* Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-border h-16 z-50 pb-safe">
+        <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-border h-16 z-[100]">
           <div className="flex justify-around items-center h-full max-w-md mx-auto">
             <NavLink 
               to="/" 
