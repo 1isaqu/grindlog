@@ -37,8 +37,8 @@ class WorkoutSet(BaseModel):
     weight: float
 
 class WorkoutLog(BaseModel):
-    id: str
-    exercise_id: str
+    id: Union[str, int]
+    exercise_id: Union[str, int]
     timestamp: str
     sets: List[WorkoutSet]
 
