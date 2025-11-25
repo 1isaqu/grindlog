@@ -15,6 +15,7 @@ export default function LogWorkout() {
   const [open, setOpen] = useState(false);
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [sets, setSets] = useState([{ reps: '', weight: '' }]);
+  const [formKey, setFormKey] = useState(0);
   
   const exercises = useLiveQuery(() => db.exercises.toArray());
 
@@ -61,6 +62,7 @@ export default function LogWorkout() {
       // Reset form
       setSets([{ reps: '', weight: '' }]);
       setSelectedExercise(null);
+      setFormKey(prev => prev + 1); // Force re-render of inputs
     } catch (error) {
       console.error(error);
       toast.error("Failed to save log");
@@ -132,7 +134,7 @@ export default function LogWorkout() {
             </div>
             
             {sets.map((set, index) => (
-              <div key={index} className="grid grid-cols-6 gap-2 items-center">
+              <div key={`${formKey}-${index}`} className="grid grid-cols-6 gap-2 items-center">
                 <div className="col-span-1 flex justify-center">
                   <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs font-bold">
                     {index + 1}
