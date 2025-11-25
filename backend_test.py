@@ -58,12 +58,12 @@ class GymLogAPITester:
         )
 
     def test_backup_create(self):
-        """Test creating a backup"""
+        """Test creating a backup with integer IDs"""
         backup_data = {
             "userId": self.user_id,
             "exercises": [
                 {
-                    "id": "1",
+                    "id": 1,  # Integer ID
                     "name": "Test Squat",
                     "muscle": "Legs",
                     "created_at": datetime.now().isoformat()
@@ -71,8 +71,8 @@ class GymLogAPITester:
             ],
             "logs": [
                 {
-                    "id": "1",
-                    "exercise_id": "1",
+                    "id": 1,  # Integer ID
+                    "exercise_id": 1,  # Integer ID
                     "timestamp": datetime.now().isoformat(),
                     "sets": [
                         {"reps": 5, "weight": 100.0}
