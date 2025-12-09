@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '../db';
-import { Card, CardContent } from "@/components/ui/card";
+import { db } from '../../db';
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { format } from 'date-fns';
 import { Calendar } from "lucide-react";
 
@@ -11,7 +11,7 @@ export default function History() {
     const allLogs = await db.logs.orderBy('timestamp').reverse().toArray();
     const allExercises = await db.exercises.toArray();
     const exerciseMap = new Map(allExercises.map(e => [e.id, e]));
-    
+
     return allLogs.map(log => ({
       ...log,
       exercise: exerciseMap.get(log.exercise_id)
@@ -29,7 +29,7 @@ export default function History() {
   return (
     <div className="p-4 pb-24 max-w-md mx-auto">
       <h1 className="text-2xl font-bold text-primary mb-6">History</h1>
-      
+
       <div className="space-y-6">
         {groupedLogs && Object.entries(groupedLogs).map(([date, dayLogs]) => (
           <div key={date} className="space-y-2">
@@ -37,7 +37,7 @@ export default function History() {
               <Calendar className="h-4 w-4" />
               <span className="font-medium">{format(new Date(date), 'EEEE, MMMM d')}</span>
             </div>
-            
+
             {dayLogs.map((log) => (
               <Card key={log.id} className="bg-card border-border/50">
                 <CardContent className="p-4">
@@ -49,7 +49,7 @@ export default function History() {
                       {format(new Date(log.timestamp), 'HH:mm')}
                     </span>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {log.sets.map((set, idx) => (
                       <div key={idx} className="bg-secondary px-2 py-1 rounded text-xs text-secondary-foreground">
@@ -57,7 +57,7 @@ export default function History() {
                       </div>
                     ))}
                   </div>
-                  
+
                   <div className="mt-2 text-xs text-muted-foreground">
                     Total Volume: <span className="text-primary">
                       {log.sets.reduce((sum, s) => sum + (s.weight * s.reps), 0).toLocaleString()}
@@ -68,7 +68,7 @@ export default function History() {
             ))}
           </div>
         ))}
-        
+
         {logs?.length === 0 && (
           <div className="text-center py-10 text-muted-foreground">
             No workouts logged yet.

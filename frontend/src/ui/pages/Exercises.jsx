@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '../db';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
+import { db } from '../../db';
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Card, CardContent } from "../components/ui/card";
 import { toast } from "sonner";
 import { Trash2, Plus, Dumbbell } from "lucide-react";
 import {
@@ -12,14 +12,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "../components/ui/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "../components/ui/select";
 
 export default function Exercises() {
   const exercises = useLiveQuery(() => db.exercises.toArray());
@@ -73,7 +73,7 @@ export default function Exercises() {
             <div className="space-y-4 py-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">Name</label>
-                <Input 
+                <Input
                   value={newExerciseName}
                   onChange={(e) => setNewExerciseName(e.target.value)}
                   placeholder="e.g. Bulgarian Split Squat"
@@ -120,9 +120,9 @@ export default function Exercises() {
                   <p className="text-xs text-muted-foreground">{ex.muscle}</p>
                 </div>
               </div>
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={() => handleDelete(ex.id)}
                 className="text-muted-foreground hover:text-destructive"
               >

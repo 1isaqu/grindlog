@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '../db';
+import { db } from '../../db';
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine,
     LineChart, Line, ComposedChart, Area, ScatterChart, Scatter, ZAxis
 } from 'recharts';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { AlertCircle, TrendingUp, Trophy, Activity } from "lucide-react";
-import {
-    getWeeklyVolumePerMuscle,
-    getExerciseProgressionData,
-    getScatterData,
-    getTopSessions,
-    getTrainingSuggestions
-} from '../lib/analytics';
+import { analyticsEngine } from '../../services/analyticsEngine';
 
 export default function DataPage() {
     const [volumeData, setVolumeData] = useState([]);
@@ -30,16 +24,16 @@ export default function DataPage() {
 
     useEffect(() => {
         const loadData = async () => {
-            const vol = await getWeeklyVolumePerMuscle();
+            const vol = await analyticsEngine.getWeeklyVolumePerMuscle();
             setVolumeData(vol);
 
-            const scatter = await getScatterData();
+            const scatter = await analyticsEngine.getScatterData();
             setScatterData(scatter);
 
-            const top = await getTopSessions();
+            const top = await analyticsEngine.getTopSessions();
             setTopSessions(top);
 
-            const sugg = await getTrainingSuggestions();
+            const sugg = await analyticsEngine.getTrainingSuggestions();
             setSuggestions(sugg);
         };
         loadData();
@@ -47,7 +41,7 @@ export default function DataPage() {
 
     useEffect(() => {
         if (selectedExerciseId) {
-            getExerciseProgressionData(selectedExerciseId).then(setProgressionData);
+            analyticsEngine.getExerciseProgressionData(selectedExerciseId).then(setProgressionData);
         } else if (exercises && exercises.length > 0) {
             // Default to first exercise
             setSelectedExerciseId(exercises[0].id);
