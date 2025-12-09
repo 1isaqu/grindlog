@@ -30,12 +30,15 @@ export default function LogWorkout() {
   };
 
   const handleSetChange = (index, field, value) => {
+    // Remove any non-numeric characters except decimal point
+    const sanitizedValue = value.replace(/[^0-9.]/g, '');
     const newSets = [...sets];
-    newSets[index][field] = value;
+    newSets[index][field] = sanitizedValue;
     setSets(newSets);
   };
 
   const preventInvalidInput = (e) => {
+    // Prevent e, E, +, -, and other non-numeric keys
     if (['e', 'E', '+', '-'].includes(e.key)) {
       e.preventDefault();
     }
@@ -43,7 +46,7 @@ export default function LogWorkout() {
 
   const handleSave = async () => {
     if (!selectedExercise) {
-      toast.error("Please select an exercise");
+      toast.error("Por favor, selecione um exercício");
       return;
     }
 
@@ -53,26 +56,26 @@ export default function LogWorkout() {
         sets: sets
       });
 
-      toast.success("Workout logged!");
+      toast.success("Treino registrado!");
       // Reset form
       setSets([{ reps: '', weight: '', rpe: '' }]);
       setSelectedExercise(null);
       setFormKey(prev => prev + 1);
     } catch (error) {
       console.error(error);
-      toast.error(error.message || "Failed to save log");
+      toast.error(error.message || "Falha ao salvar registro");
     }
   };
 
   return (
     <div className="p-4 space-y-6 pb-24 max-w-md mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-primary">Log Workout</h1>
+        <h1 className="text-2xl font-bold text-primary">Registrar Treino</h1>
         <img src={icon} alt="GrindLog" className="h-12 w-auto" />
       </div>
 
       <div className="space-y-4">
-        <label className="text-sm font-medium text-muted-foreground">Exercise</label>
+        <label className="text-sm font-medium text-muted-foreground">Exercício</label>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button
@@ -84,15 +87,15 @@ export default function LogWorkout() {
             >
               {selectedExercise
                 ? selectedExercise.name
-                : "Select exercise..."}
+                : "Selecione um exercício..."}
               <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-[300px] p-0 bg-card border-border">
             <Command className="bg-card text-foreground">
-              <CommandInput placeholder="Search exercise..." className="h-9" />
+              <CommandInput placeholder="Buscar exercício..." className="h-9" />
               <CommandList>
-                <CommandEmpty>No exercise found.</CommandEmpty>
+                <CommandEmpty>Nenhum exercício encontrado.</CommandEmpty>
                 <CommandGroup>
                   {exercises?.map((exercise) => (
                     <CommandItem
@@ -125,7 +128,7 @@ export default function LogWorkout() {
 
           <div className="space-y-3">
             <div className="grid grid-cols-8 gap-2 text-xs text-muted-foreground text-center mb-1">
-              <div className="col-span-1">Set</div>
+              <div className="col-span-1">Série</div>
               <div className="col-span-2">kg</div>
               <div className="col-span-2">Reps</div>
               <div className="col-span-2">RPE</div>
@@ -140,9 +143,9 @@ export default function LogWorkout() {
                   </div>
                 </div>
                 <div className="col-span-2">
-                <div className="col-span-2">
                   <Input
                     type="number"
+                    inputMode="decimal"
                     placeholder="0"
                     value={set.weight}
                     onChange={(e) => handleSetChange(index, 'weight', e.target.value)}
@@ -154,6 +157,7 @@ export default function LogWorkout() {
                 <div className="col-span-2">
                   <Input
                     type="number"
+                    inputMode="numeric"
                     placeholder="0"
                     value={set.reps}
                     onChange={(e) => handleSetChange(index, 'reps', e.target.value)}
@@ -165,6 +169,7 @@ export default function LogWorkout() {
                 <div className="col-span-2">
                   <Input
                     type="number"
+                    inputMode="decimal"
                     placeholder="-"
                     max="10"
                     value={set.rpe}
@@ -196,18 +201,18 @@ export default function LogWorkout() {
               onClick={handleAddSet}
               className="flex-1 bg-secondary text-secondary-foreground hover:bg-secondary/80"
             >
-              <Plus className="mr-2 h-4 w-4" /> Add Set
+              <Plus className="mr-2 h-4 w-4" /> Adicionar Série
             </Button>
             <Button
               onClick={handleSave}
               className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
               data-testid="save-workout-btn"
             >
-              <Save className="mr-2 h-4 w-4" /> Save Log
+              <Save className="mr-2 h-4 w-4" /> Salvar Treino
             </Button>
           </div>
         </div>
       )}
-        </div>
-      );
+    </div>
+  );
 }

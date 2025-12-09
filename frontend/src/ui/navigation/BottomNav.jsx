@@ -14,7 +14,7 @@ export default function BottomNav() {
                     data-testid="nav-log"
                 >
                     <PlusCircle className="h-6 w-6" />
-                    <span className="text-[10px] font-medium">Log</span>
+                    <span className="text-[10px] font-medium">Treino</span>
                 </NavLink>
 
                 <NavLink
@@ -25,7 +25,7 @@ export default function BottomNav() {
                     data-testid="nav-data"
                 >
                     <BarChart2 className="h-6 w-6" />
-                    <span className="text-[10px] font-medium">Data</span>
+                    <span className="text-[10px] font-medium">Dados</span>
                 </NavLink>
 
                 <NavLink
@@ -36,7 +36,7 @@ export default function BottomNav() {
                     data-testid="nav-history"
                 >
                     <HistoryIcon className="h-6 w-6" />
-                    <span className="text-[10px] font-medium">History</span>
+                    <span className="text-[10px] font-medium">Histórico</span>
                 </NavLink>
 
                 <NavLink
@@ -47,7 +47,7 @@ export default function BottomNav() {
                     data-testid="nav-exercises"
                 >
                     <Dumbbell className="h-6 w-6" />
-                    <span className="text-[10px] font-medium">Exercises</span>
+                    <span className="text-[10px] font-medium">Exercícios</span>
                 </NavLink>
 
                 <NavLink
@@ -58,7 +58,7 @@ export default function BottomNav() {
                     data-testid="nav-settings"
                 >
                     <SettingsIcon className="h-6 w-6" />
-                    <span className="text-[10px] font-medium">Settings</span>
+                    <span className="text-[10px] font-medium">Config</span>
                 </NavLink>
             </div>
         </nav>
