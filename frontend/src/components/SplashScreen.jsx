@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/app-logo.png';
 
 const SplashScreen = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -32,7 +32,7 @@ const SplashScreen = ({ onComplete }) => {
   if (!isVisible) return null;
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-[#0D1B2A] transition-opacity duration-300 ease-out"
       style={{ opacity: opacity }}
     >
