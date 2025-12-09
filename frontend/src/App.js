@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter } from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Toaster } from "./ui/components/ui/sonner";
 import SplashScreen from "./ui/components/SplashScreen";
 import AppRoutes from "./ui/routes/AppRoutes";
@@ -21,6 +22,9 @@ function App() {
         <BottomNav />
 
         <Toaster position="top-center" theme="light" />
+
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
       </BrowserRouter>
     </div>
   );
