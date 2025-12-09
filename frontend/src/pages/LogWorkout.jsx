@@ -10,6 +10,7 @@ import { Plus, Minus, Save, Search } from "lucide-react";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import icon from '../assets/icon.png';
 
 export default function LogWorkout() {
   const [open, setOpen] = useState(false);
@@ -115,7 +116,10 @@ export default function LogWorkout() {
 
   return (
     <div className="p-4 space-y-6 pb-24 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold text-primary mb-6">Log Workout</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-primary">Log Workout</h1>
+        <img src={icon} alt="GrindLog" className="h-12 w-auto" />
+      </div>
 
       <div className="space-y-4">
         <label className="text-sm font-medium text-muted-foreground">Exercise</label>
