@@ -15,15 +15,15 @@ db.version(2).stores({
 
 db.on('populate', () => {
   db.exercises.bulkAdd([
-    { name: 'Squat', muscle: 'Legs', created_at: new Date().toISOString() },
-    { name: 'Bench Press', muscle: 'Chest', created_at: new Date().toISOString() },
-    { name: 'Deadlift', muscle: 'Back', created_at: new Date().toISOString() },
-    { name: 'Overhead Press', muscle: 'Shoulders', created_at: new Date().toISOString() },
-    { name: 'Pull Up', muscle: 'Back', created_at: new Date().toISOString() },
-    { name: 'Dumbbell Row', muscle: 'Back', created_at: new Date().toISOString() },
-    { name: 'Lunges', muscle: 'Legs', created_at: new Date().toISOString() },
-    { name: 'Face Pull', muscle: 'Shoulders', created_at: new Date().toISOString() },
-    { name: 'Tricep Extension', muscle: 'Arms', created_at: new Date().toISOString() },
-    { name: 'Bicep Curl', muscle: 'Arms', created_at: new Date().toISOString() },
+    { name: 'Agachamento', muscle: 'Pernas', created_at: new Date().toISOString() },
+    { name: 'Supino Reto', muscle: 'Peito', created_at: new Date().toISOString() },
+    { name: 'Levantamento Terra', muscle: 'Costas', created_at: new Date().toISOString() },
+    { name: 'Desenvolvimento', muscle: 'Ombros', created_at: new Date().toISOString() },
+    { name: 'Barra Fixa', muscle: 'Costas', created_at: new Date().toISOString() },
+    { name: 'Remada Curvada', muscle: 'Costas', created_at: new Date().toISOString() },
+    { name: 'Afundo', muscle: 'Pernas', created_at: new Date().toISOString() },
+    { name: 'Face Pull', muscle: 'Ombros', created_at: new Date().toISOString() },
+    { name: 'Tríceps Corda', muscle: 'Braços', created_at: new Date().toISOString() },
+    { name: 'Rosca Direta', muscle: 'Braços', created_at: new Date().toISOString() },
   ]);
 });

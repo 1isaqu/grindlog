@@ -191,7 +191,7 @@ export default function DataPage() {
                             </div>
                             <div className="grid grid-cols-2 gap-2 mt-4 text-xs text-muted-foreground">
                                 <div className="p-2 bg-muted rounded">Superior-Direita: Alto Risco de Fadiga</div>
-                                <div className="p-2 bg-muted rounded">Superior-Esquerda: Acúmulo</div>
+                                <div className="p-2 bg-muted rounded">Superior-Esquerda: Foco em Volume</div>
                                 <div className="p-2 bg-muted rounded">Inferior-Direita: Volume Desnecessário</div>
                                 <div className="p-2 bg-muted rounded">Inferior-Esquerda: Recuperação/Fácil</div>
                             </div>

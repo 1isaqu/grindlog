@@ -18,7 +18,7 @@ export const sessionEngine = {
         }));
 
         if (validSets.length === 0) {
-            throw new Error("No valid sets to log");
+            throw new Error("Nenhuma série válida para registrar");
         }
 
         const dateIso = date.toISOString();

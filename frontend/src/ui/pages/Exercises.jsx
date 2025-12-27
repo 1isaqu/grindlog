@@ -62,7 +62,7 @@ export default function Exercises() {
         <h1 className="text-2xl font-bold text-primary">Exercícios</h1>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button size="sm" className="bg-primary text-black hover:bg-primary/90" data-testid="add-exercise-btn">
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" data-testid="add-exercise-btn">
               <Plus className="h-4 w-4 mr-1" /> Novo
             </Button>
           </DialogTrigger>
@@ -76,7 +76,7 @@ export default function Exercises() {
                 <Input
                   value={newExerciseName}
                   onChange={(e) => setNewExerciseName(e.target.value)}
-                  placeholder="e.g. Bulgarian Split Squat"
+                  placeholder="ex: Agachamento Búlgaro"
                   className="bg-background"
                   data-testid="exercise-name-input"
                 />
@@ -99,7 +99,7 @@ export default function Exercises() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button onClick={handleAddExercise} className="w-full bg-primary text-black" data-testid="save-exercise-btn">
+              <Button onClick={handleAddExercise} className="w-full bg-primary text-primary-foreground" data-testid="save-exercise-btn">
                 Criar Exercício
               </Button>
             </div>
