@@ -10,7 +10,7 @@ import { Plus, Minus, Save, Search } from "lucide-react";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/ui/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/components/ui/popover";
 import { cn } from "@/lib/utils";
-import icon from '../assets/icon.png';
+import icon from '../assets/logo.png';
 
 export default function LogWorkout() {
   const [open, setOpen] = useState(false);

@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { Plus, Minus, Save, Search } from "lucide-react";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popover";
-import icon from '../../assets/icon.png';
+import icon from '../../assets/logo.png';
 
 export default function LogWorkout() {
   const [open, setOpen] = useState(false);
