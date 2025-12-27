@@ -29,7 +29,7 @@ export default function Exercises() {
 
   const handleAddExercise = async () => {
     if (!newExerciseName) {
-      toast.error("Name is required");
+      toast.error("O nome é obrigatório");
       return;
     }
     try {
@@ -38,41 +38,41 @@ export default function Exercises() {
         muscle: newExerciseMuscle || "Other",
         created_at: new Date().toISOString()
       });
-      toast.success("Exercise added");
+      toast.success("Exercício adicionado");
       setNewExerciseName("");
       setNewExerciseMuscle("");
       setIsDialogOpen(false);
     } catch (error) {
-      toast.error("Failed to add exercise");
+      toast.error("Falha ao adicionar exercício");
     }
   };
 
   const handleDelete = async (id) => {
     try {
       await db.exercises.delete(id);
-      toast.success("Exercise deleted");
+      toast.success("Exercício excluído");
     } catch (error) {
-      toast.error("Failed to delete");
+      toast.error("Falha ao excluir");
     }
   };
 
   return (
     <div className="p-4 pb-24 max-w-md mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-primary">Exercises</h1>
+        <h1 className="text-2xl font-bold text-primary">Exercícios</h1>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button size="sm" className="bg-primary text-black hover:bg-primary/90" data-testid="add-exercise-btn">
-              <Plus className="h-4 w-4 mr-1" /> New
+              <Plus className="h-4 w-4 mr-1" /> Novo
             </Button>
           </DialogTrigger>
           <DialogContent className="bg-card border-border text-foreground">
             <DialogHeader>
-              <DialogTitle>Create Exercise</DialogTitle>
+              <DialogTitle>Criar Exercício</DialogTitle>
             </DialogHeader>
             <div className="space-y-4 py-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Name</label>
+                <label className="text-sm font-medium">Nome</label>
                 <Input
                   value={newExerciseName}
                   onChange={(e) => setNewExerciseName(e.target.value)}
@@ -82,25 +82,25 @@ export default function Exercises() {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">Muscle Group</label>
+                <label className="text-sm font-medium">Grupo Muscular</label>
                 <Select onValueChange={setNewExerciseMuscle} value={newExerciseMuscle}>
                   <SelectTrigger className="bg-background">
-                    <SelectValue placeholder="Select muscle" />
+                    <SelectValue placeholder="Selecionar músculo" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Legs">Legs</SelectItem>
-                    <SelectItem value="Chest">Chest</SelectItem>
-                    <SelectItem value="Back">Back</SelectItem>
-                    <SelectItem value="Shoulders">Shoulders</SelectItem>
-                    <SelectItem value="Arms">Arms</SelectItem>
+                    <SelectItem value="Legs">Pernas</SelectItem>
+                    <SelectItem value="Chest">Peito</SelectItem>
+                    <SelectItem value="Back">Costas</SelectItem>
+                    <SelectItem value="Shoulders">Ombros</SelectItem>
+                    <SelectItem value="Arms">Braços</SelectItem>
                     <SelectItem value="Core">Core</SelectItem>
                     <SelectItem value="Cardio">Cardio</SelectItem>
-                    <SelectItem value="Other">Other</SelectItem>
+                    <SelectItem value="Other">Outro</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <Button onClick={handleAddExercise} className="w-full bg-primary text-black" data-testid="save-exercise-btn">
-                Create Exercise
+                Criar Exercício
               </Button>
             </div>
           </DialogContent>
@@ -133,7 +133,7 @@ export default function Exercises() {
         ))}
         {exercises?.length === 0 && (
           <div className="text-center py-10 text-muted-foreground">
-            No exercises found. Create one to get started.
+            Nenhum exercício encontrado. Crie um para começar.
           </div>
         )}
       </div>

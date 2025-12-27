@@ -36,7 +36,7 @@ const SplashScreen = ({ onComplete }) => {
       className="fixed inset-0 z-50 flex items-center justify-center bg-[#0D1B2A] transition-opacity duration-300 ease-out"
       style={{ opacity: opacity }}
     >
-      <img src={logo} alt="GymLog Logo" className="w-48 h-auto" />
+      <img src={logo} alt="GrindLog Logo" className="w-48 h-auto" />
     </div>
   );
 };

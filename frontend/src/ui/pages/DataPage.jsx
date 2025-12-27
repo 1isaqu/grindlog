@@ -50,7 +50,7 @@ export default function DataPage() {
 
     return (
         <div className="p-4 space-y-6 pb-24 max-w-md mx-auto animate-in fade-in duration-500">
-            <h1 className="text-2xl font-bold text-primary mb-2">Analytics</h1>
+            <h1 className="text-2xl font-bold text-primary mb-2">Análises</h1>
 
             {/* Suggestions */}
             {suggestions.length > 0 && (
@@ -67,16 +67,16 @@ export default function DataPage() {
 
             <Tabs defaultValue="overview" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="overview">Overview</TabsTrigger>
-                    <TabsTrigger value="progression">Progress</TabsTrigger>
-                    <TabsTrigger value="analysis">Analysis</TabsTrigger>
+                    <TabsTrigger value="overview">Geral</TabsTrigger>
+                    <TabsTrigger value="progression">Progresso</TabsTrigger>
+                    <TabsTrigger value="analysis">Análise</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="overview" className="space-y-4 mt-4">
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-lg">Weekly Volume</CardTitle>
-                            <CardDescription>Current vs 4-Week Average</CardDescription>
+                            <CardTitle className="text-lg">Volume Semanal</CardTitle>
+                            <CardDescription>Atual vs Média de 4 Semanas</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="h-[250px] w-full">
@@ -89,8 +89,8 @@ export default function DataPage() {
                                             contentStyle={{ backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #eee' }}
                                             cursor={{ fill: 'transparent' }}
                                         />
-                                        <Bar dataKey="baseline" fill="#e2e8f0" name="Baseline" barSize={10} radius={[0, 4, 4, 0]} />
-                                        <Bar dataKey="current" fill="#0D1B2A" name="Current" barSize={10} radius={[0, 4, 4, 0]} />
+                                        <Bar dataKey="baseline" fill="#e2e8f0" name="Base" barSize={10} radius={[0, 4, 4, 0]} />
+                                        <Bar dataKey="current" fill="#0D1B2A" name="Atual" barSize={10} radius={[0, 4, 4, 0]} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
@@ -100,7 +100,7 @@ export default function DataPage() {
                     <Card>
                         <CardHeader>
                             <CardTitle className="text-lg flex items-center gap-2">
-                                <Trophy className="h-5 w-5 text-yellow-500" /> Top Sessions
+                                <Trophy className="h-5 w-5 text-yellow-500" /> Melhores Sessões
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
@@ -120,7 +120,7 @@ export default function DataPage() {
                                         </div>
                                     </div>
                                 ))}
-                                {topSessions.length === 0 && <p className="text-sm text-muted-foreground text-center py-4">No sessions logged yet.</p>}
+                                {topSessions.length === 0 && <p className="text-sm text-muted-foreground text-center py-4">Nenhum treino registrado ainda.</p>}
                             </div>
                         </CardContent>
                     </Card>
@@ -128,13 +128,13 @@ export default function DataPage() {
 
                 <TabsContent value="progression" className="space-y-4 mt-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium">Select Exercise</label>
+                        <label className="text-sm font-medium">Selecionar Exercício</label>
                         <Select
                             value={selectedExerciseId ? String(selectedExerciseId) : ""}
                             onValueChange={(val) => setSelectedExerciseId(parseInt(val))}
                         >
                             <SelectTrigger>
-                                <SelectValue placeholder="Select exercise" />
+                                <SelectValue placeholder="Selecionar exercício" />
                             </SelectTrigger>
                             <SelectContent>
                                 {exercises?.map(e => (
@@ -146,8 +146,8 @@ export default function DataPage() {
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-lg">Progression</CardTitle>
-                            <CardDescription>Volume & Max Load</CardDescription>
+                            <CardTitle className="text-lg">Evolução</CardTitle>
+                            <CardDescription>Volume e Carga Máxima</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="h-[300px] w-full">
@@ -159,8 +159,8 @@ export default function DataPage() {
                                         <YAxis yAxisId="right" orientation="right" stroke="#8884d8" tick={{ fontSize: 10 }} />
                                         <Tooltip labelFormatter={(d) => new Date(d).toLocaleDateString()} />
                                         <Area yAxisId="left" type="monotone" dataKey="volume" fill="#0D1B2A" fillOpacity={0.1} stroke="#0D1B2A" name="Volume" />
-                                        <Line yAxisId="right" type="monotone" dataKey="maxLoad" stroke="#8884d8" strokeWidth={2} dot={{ r: 3 }} name="Max Load (kg)" />
-                                        <Line yAxisId="right" type="monotone" dataKey="maxReps" stroke="#82ca9d" strokeWidth={2} dot={{ r: 3 }} name="Max Reps" />
+                                        <Line yAxisId="right" type="monotone" dataKey="maxLoad" stroke="#8884d8" strokeWidth={2} dot={{ r: 3 }} name="Carga Máxima (kg)" />
+                                        <Line yAxisId="right" type="monotone" dataKey="maxReps" stroke="#82ca9d" strokeWidth={2} dot={{ r: 3 }} name="Repetições Máximas" />
                                     </ComposedChart>
                                 </ResponsiveContainer>
                             </div>
@@ -171,8 +171,8 @@ export default function DataPage() {
                 <TabsContent value="analysis" className="space-y-4 mt-4">
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-lg">Intensity vs Volume</CardTitle>
-                            <CardDescription>Session Analysis</CardDescription>
+                            <CardTitle className="text-lg">Intensidade vs Volume</CardTitle>
+                            <CardDescription>Análise de Sessão</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="h-[300px] w-full">
@@ -183,17 +183,17 @@ export default function DataPage() {
                                         <YAxis type="number" dataKey="y" name="RPE" domain={[0, 10]} tick={{ fontSize: 10 }} />
                                         <ZAxis type="number" dataKey="z" range={[50, 50]} />
                                         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                                        <ReferenceLine y={7} stroke="red" strokeDasharray="3 3" label={{ value: 'High Intensity', position: 'insideTopRight', fontSize: 10, fill: 'red' }} />
-                                        <ReferenceLine x={10000} stroke="green" strokeDasharray="3 3" label={{ value: 'High Volume', position: 'insideBottomRight', fontSize: 10, fill: 'green' }} />
-                                        <Scatter name="Sessions" data={scatterData} fill="#0D1B2A" />
+                                        <ReferenceLine y={7} stroke="red" strokeDasharray="3 3" label={{ value: 'Alta Intensidade', position: 'insideTopRight', fontSize: 10, fill: 'red' }} />
+                                        <ReferenceLine x={10000} stroke="green" strokeDasharray="3 3" label={{ value: 'Alto Volume', position: 'insideBottomRight', fontSize: 10, fill: 'green' }} />
+                                        <Scatter name="Sessões" data={scatterData} fill="#0D1B2A" />
                                     </ScatterChart>
                                 </ResponsiveContainer>
                             </div>
                             <div className="grid grid-cols-2 gap-2 mt-4 text-xs text-muted-foreground">
-                                <div className="p-2 bg-muted rounded">Top-Right: High Fatigue Risk</div>
-                                <div className="p-2 bg-muted rounded">Top-Left: Accumulation</div>
-                                <div className="p-2 bg-muted rounded">Bottom-Right: Junk Volume</div>
-                                <div className="p-2 bg-muted rounded">Bottom-Left: Deload/Easy</div>
+                                <div className="p-2 bg-muted rounded">Superior-Direita: Alto Risco de Fadiga</div>
+                                <div className="p-2 bg-muted rounded">Superior-Esquerda: Acúmulo</div>
+                                <div className="p-2 bg-muted rounded">Inferior-Direita: Volume Desnecessário</div>
+                                <div className="p-2 bg-muted rounded">Inferior-Esquerda: Recuperação/Fácil</div>
                             </div>
                         </CardContent>
                     </Card>

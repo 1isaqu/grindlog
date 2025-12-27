@@ -43,17 +43,17 @@ export default function Settings() {
       const timestamp = new Date().toLocaleString();
       setLastSync(timestamp);
       localStorage.setItem('gymlog_last_sync', timestamp);
-      toast.success("Backup successful!");
+      toast.success("Backup realizado com sucesso!");
     } catch (error) {
       console.error(error);
-      toast.error("Backup failed. Check connection.");
+      toast.error("Falha no backup. Verifique a conexão.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleRestoreFromCloud = async () => {
-    if (!window.confirm("This will overwrite your local data. Are you sure?")) return;
+    if (!window.confirm("Isso irá sobrescrever seus dados locais. Tem certeza?")) return;
 
     setLoading(true);
     try {
@@ -69,11 +69,11 @@ export default function Settings() {
           if (data.logs?.length) await db.logs.bulkAdd(data.logs);
         });
 
-        toast.success("Data restored successfully!");
+        toast.success("Dados restaurados com sucesso!");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Restore failed. No backup found or connection error.");
+      toast.error("Falha na restauração. Nenhum backup encontrado ou erro de conexão.");
     } finally {
       setLoading(false);
     }
@@ -81,19 +81,19 @@ export default function Settings() {
 
   return (
     <div className="p-4 pb-24 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold text-primary mb-6">Settings</h1>
+      <h1 className="text-2xl font-bold text-primary mb-6">Configurações</h1>
 
       <div className="space-y-6">
         <Card className="bg-card border-border">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <User className="h-5 w-5 text-primary" />
-              User Identity
+              Identidade do Usuário
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-2">
-              This ID is your key to restore data. Keep it safe.
+              Este ID é sua chave para restaurar dados. Guarde-o com segurança.
             </p>
             <div className="bg-secondary p-3 rounded font-mono text-xs break-all select-all border border-border">
               {userId}
@@ -105,12 +105,12 @@ export default function Settings() {
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <RefreshCw className="h-5 w-5 text-primary" />
-              Cloud Sync
+              Sincronização na Nuvem
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-sm text-muted-foreground">
-              Last Synced: <span className="text-foreground">{lastSync || 'Never'}</span>
+              Última Sincronização: <span className="text-foreground">{lastSync || 'Nunca'}</span>
             </div>
 
             <Button
@@ -120,7 +120,7 @@ export default function Settings() {
               data-testid="sync-btn"
             >
               <CloudUpload className="mr-2 h-4 w-4" />
-              {loading ? 'Syncing...' : 'Backup to Cloud'}
+              {loading ? 'Sincronizando...' : 'Backup na Nuvem'}
             </Button>
 
             <Button
@@ -131,13 +131,13 @@ export default function Settings() {
               data-testid="restore-btn"
             >
               <CloudDownload className="mr-2 h-4 w-4" />
-              {loading ? 'Restoring...' : 'Restore from Cloud'}
+              {loading ? 'Restaurando...' : 'Restaurar da Nuvem'}
             </Button>
           </CardContent>
         </Card>
 
         <div className="text-xs text-center text-muted-foreground mt-8">
-          GymLog v1.0.0 • Local First
+          GrindLog v1.0.0 • Local First
         </div>
       </div>
     </div>
